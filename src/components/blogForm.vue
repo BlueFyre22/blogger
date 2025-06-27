@@ -1,22 +1,48 @@
 <script setup>
+import { blogsService } from '@/services/BlogsService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
+import { ref } from 'vue';
+
+
+async function editBlog() {
+  try {
+    await blogsService.editBlog(editableBlogData.value)
+    editableBlogData.value = {
+      title: '',
+      body: "",
+      imgUrl: "",
+
+    }
+
+  }
+  catch (error) {
+    Pop.error(error);
+    logger.log("ruh roh", error)
+  }
+}
+
+const editableBlogData = ref(
+  {
+
+    title: '',
+    body: "",
+    imgUrl: "",
+
+  }
+)
 
 </script>
 
 
 <template>
-  <form>
-    <div class="floating-form mb-3">
-      <input type="url" class="form-control" id="blog-image" placeholder="Blog Image..." maxlength="500">
-      <label for="blog-image">Blog Image</label>
+  <form @submit.prevent="editBlog()">
+    <div class="form-floating mb-3">
+      <input v-model="editableBlogData.title" type="text" class="form-control" id="blog-title" placeholder="Title..."
+        required maxlength="500">
+      <label for="house-year">Year home was built</label>
     </div>
-    <div class="floating-form mb-3">
-      <input type="text" class="form-control" name="blog-name" id="blog-name" placeholder="Blog Name..." maxlength="50">
-      <label for="blog-name">Blog Name</label>
-    </div>
-    <div class="floating-form mb-3">
-      <input type="test" class="form-control" name="blog-body" id="blog-body" placeholder="Blog body" maxlength="500">
-      <label for="blog-body">Body</label>
-    </div>
+
     <button class="btn btn-success w-25">Submit</button>
   </form>
 </template>

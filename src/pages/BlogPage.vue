@@ -12,8 +12,8 @@ const activeBlog = computed(() => AppState.activeBlog)
 
 const route = useRoute()
 
-const identity = AppState.identity;
-const account = AppState.account;
+// const identity = AppState.identity;
+// const account = computed(() => AppState.account)
 
 onMounted(() => {
   getBlogById()
@@ -34,11 +34,6 @@ async function getBlogById() {
   }
 }
 
-const editableBlog = ref({
-  title: '',
-  picture: '',
-  body: ''
-})
 
 
 </script>
@@ -70,7 +65,7 @@ const editableBlog = ref({
     </div>
 
   </div>
-  <EditBlogForm />
+
 </template>
 
 

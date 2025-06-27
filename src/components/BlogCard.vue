@@ -20,10 +20,10 @@ defineProps({
         <small class="p-3">{{ blog.creator.name }}</small>
       </div>
       <div class="d-flex flex-column align-items-start ms-2">
-        <RouterLink :to="{ name: 'Blog Card', params: { blogId: blog.id } }">
+        <!-- <RouterLink :to="{ name: 'Blog Card', params: { blogId: blog.id } }"> -->
 
-          <p class="mt-3 fs-4 fw-bold">{{ blog.title }}</p>
-        </RouterLink>
+        <p class="mt-3 fs-4 fw-bold">{{ blog.title }}</p>
+        <!-- </RouterLink> -->
 
         <p>{{ blog.body.slice(0, 200) }}...</p>
         <p class="mt-5">{{ blog.createdAt }}</p>

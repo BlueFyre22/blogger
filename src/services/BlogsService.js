@@ -4,6 +4,16 @@ import { Blog } from "@/models/Blog.js";
 import { AppState } from "@/AppState.js";
 
 class BlogsService {
+
+  
+  async editBlog(editableBlogData) {
+    const response = await api.put("api/blogs", editableBlogData)
+    logger.log("editing Blog post", response.data)
+    const blog = new Blog(response.data)
+    AppState.activeBlog = blog
+  }
+
+
   async getBlogs() {
     const response = await api.get("api/blogs"); //got it
     logger.log("blogs? 📜", response.data); //logged it
